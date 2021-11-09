@@ -1,5 +1,4 @@
 import subprocess
-# "hadoop","fs","-ls","/"]
 def run_cmd(command):
     output = subprocess.run(command.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     if output.returncode == 0:
@@ -7,4 +6,12 @@ def run_cmd(command):
     else:
         print(output.stderr)
 
-run_cmd("hadoop fs -ls /")
+
+
+if __name__ == "__main__":
+
+    commands={"start_hadoop":"start-all.sh","stop_hadoop":"stop-all.sh",
+                "version":"hadoop version","mkdir":"hadoop fs -mkdir /",
+                "lsr":"hadoop fs -ls -R /","ls":"hadoop fs -ls /",
+                "read_file":"hadoop fs -cat /newDataFlair/new.txt"}
+    run_cmd(commands["read_file"])
